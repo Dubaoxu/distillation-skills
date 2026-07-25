@@ -200,6 +200,8 @@ cp -r distillation-skills/nuwa-skill ~/.claude/skills/nuwa-skill
 # 只安装自动化控制框架
 cp -r distillation-skills/automation-control-framework ~/.claude/skills/automation-control-framework
 ```
+创造：
+首先，打开你的代理中的项目文件夹：目标是让AI指向你在上一步解压/克隆的目录。在IDE类工具中，使用“文件→打开文件夹”——AI聊天面板通常在侧边栏;先在CLI代理中启动，然后启动它。从这里开始的所有事情都在聊天里进行。
 
 ---
 
