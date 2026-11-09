@@ -1,6 +1,6 @@
 ---
 name: academic-pipeline
-description: "Orchestrator for the full academic research pipeline: research -> write -> integrity check -> review -> revise -> re-review -> re-revise -> final integrity check -> finalize. Coordinates deep-research, academic-paper, and academic-paper-reviewer into a seamless 10-stage workflow with mandatory integrity verification, two-stage peer review, and reproducible quality gates. Triggers on: academic pipeline, research to paper, full paper workflow, paper pipeline, end-to-end paper, research-to-publication, complete paper workflow."
+description: "Coordinate the academic research-to-paper workflow across deep-research, academic-paper, and academic-paper-reviewer, including integrity checks, review, revision, finalization, and cross-session state. Use for a full paper workflow or research-to-publication request; use the individual skills for a single stage."
 metadata:
   version: "3.9.2"
   last_updated: "2026-05-18"
@@ -31,6 +31,10 @@ A lightweight orchestrator that manages the complete academic pipeline from rese
 4. **Final integrity check** — After revision completion, re-verify all citations and data are 100% correct
 5. **Reproducible** — Standardized workflow producing consistent quality assurance each time
 6. **Process documentation** — After pipeline completion, automatically generates a "Paper Creation Process Record" PDF documenting the human-AI collaboration history
+
+## Portable project intake
+
+For `research-project.yaml`, Zotero/Obsidian inputs, paper-type selection, or execution in Codex, read [the portable research workflow](../shared/references/portable_research_workflow.md) before dispatching stages. Preserve the selected paper type across research, writing, review, and resume. Use its runtime adaptation when Claude-specific routing files or hooks are unavailable.
 
 ## Quick Start
 

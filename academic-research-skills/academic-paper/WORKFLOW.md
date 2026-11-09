@@ -23,6 +23,10 @@ A general-purpose academic paper writing tool — 12-agent pipeline covering all
 
 > **Routing discipline (v3.9.2):** see `.claude/CLAUDE.md` "Routing Discipline (v3.9.2)" + `shared/references/intent_clarification_protocol.md` for cross-skill routing rules. This skill assumes routing has already settled — ambiguous cross-phase materials should have been clarified upstream.
 
+## Portable project intake
+
+For `research-project.yaml`, Zotero/Obsidian inputs, or execution in Codex, read [the portable research workflow](../shared/references/portable_research_workflow.md). Apply the selected review/empirical branch to the outline and evidence requirements, preserving citation keys and existing passport state. Use its runtime adaptation when Claude-specific routing files or hooks are unavailable.
+
 ## Quick Start
 
 **Minimal command:**
@@ -311,7 +315,7 @@ Socratic mode that guides users through paper planning one chapter at a time. Bu
 
 ## Handoff Protocol: deep-research -> academic-paper
 
-`intake_agent` automatically detects deep-research materials (RQ Brief / Bibliography / Synthesis / INSIGHT Collection) and skips redundant steps. See `deep-research/SKILL.md` Handoff Protocol for the complete handoff material format.
+`intake_agent` automatically detects deep-research materials (RQ Brief / Bibliography / Synthesis / INSIGHT Collection) and skips redundant steps. See `deep-research/WORKFLOW.md` Handoff Protocol for the complete handoff material format.
 
 ---
 
@@ -334,7 +338,7 @@ See `references/failure_paths.md` for details. Quick reference:
 
 ## Full Academic Pipeline
 
-See `academic-pipeline/SKILL.md` for the complete workflow.
+See `academic-pipeline/WORKFLOW.md` for the complete workflow.
 
 ---
 

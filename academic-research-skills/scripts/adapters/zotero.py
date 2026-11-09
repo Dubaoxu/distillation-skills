@@ -157,15 +157,27 @@ def main() -> int:
     except json.JSONDecodeError as e:
         print(f"ERROR: input is not valid JSON: {e}", file=sys.stderr)
         return 1
+    # Better BibTeX JSON exports wrap records in an `items` array. Keep the
+    # historical bare-array input for existing exports and adapter fixtures.
+    if isinstance(data, dict):
+        data = data.get("items")
     if not isinstance(data, list):
-        print(f"ERROR: expected top-level JSON array, got {type(data).__name__}", file=sys.stderr)
+        print("ERROR: expected Better BibTeX JSON with an items array, or a bare record array; Better CSL JSON is not supported", file=sys.stderr)
         return 1
 
     entries: list[dict] = []
     rejected: list[dict] = []
     seen_keys: set[str] = set()
 
-    for item in data:
+    for index, item in enumerate(data):
+        if not isinstance(item, dict):
+            rejected.append({
+                "source": f"record:{index}",
+                "reason": "invalid_field_format",
+                "raw": repr(item),
+                "detail": "expected a Zotero item object",
+            })
+            continue
         citekey = item.get("citationKey") or ""
         item_id = str(item.get("itemID") or "").strip()
         zotero_key = str(item.get("key") or "").strip()

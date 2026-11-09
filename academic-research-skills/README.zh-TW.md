@@ -1,3 +1,5 @@
+> **当前改版：单一 skill（4.0.0）**。只安装和调用 `academic-research-skills`；调研、写作、评审、编排均为内部模式。使用 [新版快速开始](QUICKSTART.md) 和 [统一入口](SKILL.md)。以下保留上游功能说明与历史发布记录；其中四 skill 安装方式、上游 marketplace 命令和独立 skill 调用方式不适用于本地合并版。
+
 # Academic Research Skills for Claude Code
 
 [![Version](https://img.shields.io/badge/version-v3.9.2-blue)](https://github.com/Imbad0202/academic-research-skills/releases/tag/v3.9.2)

@@ -31,6 +31,8 @@ class FrontmatterError(Exception):
 def iter_skill_files(root: Path) -> list[Path]:
     """Top-level SKILL.md files only. Skips SKIP_DIRS."""
     results: list[Path] = []
+    if (root / "SKILL.md").is_file():
+        return [root / "SKILL.md"]
     for child in sorted(root.iterdir()):
         if not child.is_dir() or child.name in SKIP_DIRS:
             continue

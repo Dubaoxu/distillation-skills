@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.0] — Unified local edition (2026-11-08)
+
+- Merged research, writing, review, and orchestration into one `academic-research-skills` entrypoint.
+- Retained detailed protocols as internal `WORKFLOW.md` references, with no separate skill manifests or aliases.
+- Project-local installation now exposes one skill per selected host; updated setup and migration guidance.
+- Preserved Zotero/Obsidian handling and review/empirical project configuration from the local integration iteration.
+- This edition has not been published to the upstream marketplace.
+
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]

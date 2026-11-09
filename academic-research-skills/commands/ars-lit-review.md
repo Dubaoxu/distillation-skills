@@ -3,9 +3,9 @@ description: ARS academic-paper `lit-review` mode — annotated bibliography in 
 model: sonnet
 ---
 
-Trigger the `academic-paper` skill in `lit-review` mode. Produces an annotated bibliography rendered as a literature review section. Fidelity spectrum, medium oversight.
+Use the `academic-research-skills` skill and its internal `academic-paper` workflow in `lit-review` mode. Produces an annotated bibliography rendered as a literature review section. Fidelity spectrum, medium oversight.
 
-For the upstream research-side literature review (annotated bibliography + synthesis report) prefer the `deep-research` skill `lit-review` mode instead.
+For research-side literature synthesis, select `research` mode with the internal `lit-review` option in this same skill.
 
 Mode reference: `MODE_REGISTRY.md` § academic-paper.
-Skill entry: `academic-paper/SKILL.md`.
+Internal workflow reference: `academic-paper/WORKFLOW.md`.

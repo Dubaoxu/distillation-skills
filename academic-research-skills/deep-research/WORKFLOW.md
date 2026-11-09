@@ -22,6 +22,10 @@ Universal deep research tool — a domain-agnostic 13-agent team for rigorous ac
 
 > **Routing discipline (v3.9.2):** see `.claude/CLAUDE.md` "Routing Discipline (v3.9.2)" + `shared/references/intent_clarification_protocol.md` for cross-skill routing rules. This skill assumes routing has already settled — ambiguous cross-phase materials should have been clarified upstream.
 
+## Portable project intake
+
+For `research-project.yaml`, Zotero/Obsidian inputs, or execution in Codex, read [the portable research workflow](../shared/references/portable_research_workflow.md). Select narrative/systematic/scoping review or empirical background research from the user's project choice; imported notes and metadata are not verified full-text evidence. Use its runtime adaptation when Claude-specific routing files or hooks are unavailable.
+
 ## Quick Start
 
 **Minimal command:**
@@ -360,7 +364,7 @@ See `examples/handoff_to_paper.md` for a detailed handoff example.
 
 ## Full Academic Pipeline
 
-See `academic-pipeline/SKILL.md` for the complete workflow.
+See `academic-pipeline/WORKFLOW.md` for the complete workflow.
 
 ---
 

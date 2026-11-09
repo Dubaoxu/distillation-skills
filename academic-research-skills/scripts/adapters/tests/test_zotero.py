@@ -2,6 +2,7 @@
 from pathlib import Path
 import subprocess
 import json
+import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 ADAPTER = REPO_ROOT / "scripts/adapters/zotero.py"
@@ -426,3 +427,35 @@ def test_all_rejected_corpus(tmp_path, load_yaml):
     rr = load_yaml(r)
     assert pp["literature_corpus"] == []
     assert rr["summary"]["total_rejected"] == 2
+
+
+def test_bbt_export_envelope(tmp_path, load_yaml):
+    records = json.loads(FIXTURE_INPUT.read_text(encoding="utf-8"))
+    wrapped = tmp_path / "wrapped.json"
+    wrapped.write_text(json.dumps({"config": {}, "items": records}), encoding="utf-8")
+    p, r = tmp_path / "p.yaml", tmp_path / "r.yaml"
+    result = _run("--input", str(wrapped), "--passport", str(p), "--rejection-log", str(r))
+    assert result.returncode == 0, result.stderr
+    assert len(load_yaml(p)["literature_corpus"]) == 2
+    assert len(load_yaml(r)["rejected"]) == 2
+
+
+@pytest.mark.parametrize("data", [{}, {"items": {}}, {"items": None}, 42])
+def test_invalid_export_root_does_not_emit_partial_outputs(tmp_path, data):
+    source = tmp_path / "input.json"
+    source.write_text(json.dumps(data))
+    p, r = tmp_path / "p.yaml", tmp_path / "r.yaml"
+    result = _run("--input", str(source), "--passport", str(p), "--rejection-log", str(r))
+    assert result.returncode == 1
+    assert not p.exists() and not r.exists()
+
+
+def test_non_object_record_does_not_abort_other_records(tmp_path, load_yaml):
+    records = json.loads(FIXTURE_INPUT.read_text(encoding="utf-8"))[:1]
+    source = tmp_path / "mixed.json"
+    source.write_text(json.dumps({"items": [None, *records]}))
+    p, r = tmp_path / "p.yaml", tmp_path / "r.yaml"
+    result = _run("--input", str(source), "--passport", str(p), "--rejection-log", str(r))
+    assert result.returncode == 0, result.stderr
+    assert len(load_yaml(p)["literature_corpus"]) == 1
+    assert load_yaml(r)["rejected"][0]["reason"] == "invalid_field_format"

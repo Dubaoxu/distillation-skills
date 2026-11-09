@@ -29,7 +29,7 @@ Filenames are parsed with two conventions plus a fallback: `{Family}_{Year}_{tit
 
 ### zotero
 
-Export your Zotero library as **Better BibTeX JSON** (Zotero → File → Export Library → Format: Better CSL JSON, with the Better BibTeX extension installed). Then:
+Export the intended Zotero collection as **Better BibTeX JSON** (with the Better BibTeX extension installed). Choose **Better BibTeX JSON**, not Better CSL JSON: this adapter needs Zotero `creators`, `citationKey`, and item identifiers. Both an export object containing `items: [...]` and the historical bare record array are accepted. Then:
 
 ```bash
 python scripts/adapters/zotero.py \

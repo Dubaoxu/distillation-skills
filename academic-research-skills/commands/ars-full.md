@@ -3,7 +3,7 @@ description: ARS full pipeline — research → write → review → revise → 
 model: opus
 ---
 
-Trigger the `academic-pipeline` orchestrator (`(pipeline)` in MODE_REGISTRY.md — the orchestrator has no named mode of its own). Loads the skill and executes the complete academic research workflow (10-stage orchestration: deep-research → academic-paper → integrity → academic-paper-reviewer → revision → re-review → final integrity → finalize).
+Use the `academic-research-skills` skill in `pipeline` mode. Execute the requested research, writing, integrity, review, revision, and finalization stages within the same skill. The retained `academic-pipeline` name identifies an internal state protocol, not another skill to invoke.
 
 Mode reference: `MODE_REGISTRY.md` § academic-pipeline.
-Skill entry: `academic-pipeline/SKILL.md`.
+Internal workflow reference: `academic-pipeline/WORKFLOW.md`.

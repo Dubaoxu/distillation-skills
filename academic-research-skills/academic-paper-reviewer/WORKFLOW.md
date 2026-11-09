@@ -25,6 +25,10 @@ Simulates a complete international journal peer review process: automatically id
 
 ---
 
+## Portable project intake
+
+For `research-project.yaml`, Zotero/Obsidian inputs, or execution in Codex, read [the portable research workflow](../shared/references/portable_research_workflow.md). Apply the selected review/empirical review focus and distinguish source evidence from personal notes. Disclose unavailable independent-call isolation rather than claiming blind-review compliance. Use its runtime adaptation when Claude-specific routing files or hooks are unavailable.
+
 ## Quick Start
 
 **Simplest command:**

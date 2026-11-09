@@ -5,11 +5,41 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+
+
+def check_unified_layout(root: Path) -> list[str]:
+    """Validate the single entrypoint and its reachable internal workflows."""
+    errors = []
+    entry = root / "SKILL.md"
+    manifests = set(root.rglob("SKILL.md"))
+    if manifests != {entry}:
+        errors.append("unified package must contain exactly one root SKILL.md")
+    if not entry.is_file():
+        return errors
+    text = entry.read_text(encoding="utf-8")
+    try:
+        metadata = yaml.safe_load(text.split("---", 2)[1])
+        if metadata.get("name") != "academic-research-skills":
+            errors.append("root skill name must be academic-research-skills")
+    except (IndexError, AttributeError, yaml.YAMLError):
+        errors.append("root skill frontmatter is invalid")
+    for target in MARKDOWN_LINK_RE.findall(text):
+        if "://" not in target and not target.startswith("#"):
+            path = (root / target.split("#", 1)[0]).resolve()
+            if not path.is_relative_to(root.resolve()) or not path.is_file():
+                errors.append(f"unreachable internal reference: {target}")
+    for module in ("deep-research", "academic-paper", "academic-paper-reviewer", "academic-pipeline"):
+        if not (root / module / "WORKFLOW.md").is_file():
+            errors.append(f"missing retained workflow: {module}")
+        if (root / "skills" / module).exists():
+            errors.append(f"obsolete independent skill alias: {module}")
+    return errors
 
 
 def read(rel_path: str) -> str:
@@ -84,7 +114,7 @@ def check_claude_md() -> None:
 
 
 def check_reviewer_version_block() -> None:
-    rel_path = "academic-paper-reviewer/SKILL.md"
+    rel_path = "academic-paper-reviewer/WORKFLOW.md"
     text = read(rel_path)
     frontmatter_match = re.search(
         r'metadata:\s*[\s\S]*?\n\s+version:\s"([^"]+)"\n\s+last_updated:\s"([^"]+)"',
@@ -116,7 +146,7 @@ def check_reviewer_version_block() -> None:
 
 def check_pipeline_docs() -> None:
     for rel_path in (
-        "academic-pipeline/SKILL.md",
+        "academic-pipeline/WORKFLOW.md",
         "academic-pipeline/agents/pipeline_orchestrator_agent.md",
     ):
         expect_absent(rel_path, "auto-continue in 5 seconds")
@@ -297,7 +327,7 @@ def check_setup_docs() -> None:
 
 def check_docx_contract() -> None:
     expect_contains(
-        "academic-paper/SKILL.md",
+        "academic-paper/WORKFLOW.md",
         "LaTeX/DOCX-via-Pandoc/PDF output",
     )
     expect_contains(
@@ -309,7 +339,7 @@ def check_docx_contract() -> None:
         "If Pandoc is unavailable, provide complete markdown + DOCX conversion instructions",
     )
     expect_contains(
-        "academic-pipeline/SKILL.md",
+        "academic-pipeline/WORKFLOW.md",
         "DOCX via Pandoc when available, otherwise conversion instructions",
     )
     expect_contains(
@@ -317,7 +347,7 @@ def check_docx_contract() -> None:
         "DOCX via Pandoc when available (otherwise instructions)",
     )
     for rel_path in (
-        "academic-pipeline/SKILL.md",
+        "academic-pipeline/WORKFLOW.md",
         "academic-pipeline/agents/pipeline_orchestrator_agent.md",
     ):
         expect_absent(rel_path, "Auto-produce MD + DOCX")
@@ -350,6 +380,13 @@ def check_reference_docs() -> None:
 
 
 def main() -> int:
+    if (ROOT / "SKILL.md").is_file():
+        errors = check_unified_layout(ROOT)
+        for error in errors:
+            print(f"ERROR: {error}")
+        if not errors:
+            print("Unified skill layout and internal references passed.")
+        return int(bool(errors))
     check_mode_registry()
     check_claude_md()
     check_reviewer_version_block()

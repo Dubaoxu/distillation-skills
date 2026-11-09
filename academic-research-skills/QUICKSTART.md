@@ -1,82 +1,49 @@
-# Quick Start
+# 单一 Skill 安装与使用
 
-Get from zero to your first AI-assisted research in 3 steps.
+本版本只提供一个 skill：`academic-research-skills`。调研、写作、评审和编排都在同一入口内完成。旧目录保留角色、模板与协议，`WORKFLOW.md` 是内部参考，不是独立 skill。
 
-## Step 1: Install
+## 安装
 
-```bash
-# Install Claude Code
-curl -fsSL https://claude.ai/install.sh | bash
+将仓库保存在固定位置，在 `academic-research-skills` 目录运行：
 
-# Clone this repo somewhere stable
-git clone https://github.com/Imbad0202/academic-research-skills.git ~/academic-research-skills
-
-# Install each of the four skills into your project's .claude/skills/
-cd /path/to/your/project
-mkdir -p .claude/skills
-ln -s ~/academic-research-skills/deep-research .claude/skills/deep-research
-ln -s ~/academic-research-skills/academic-paper .claude/skills/academic-paper
-ln -s ~/academic-research-skills/academic-paper-reviewer .claude/skills/academic-paper-reviewer
-ln -s ~/academic-research-skills/academic-pipeline .claude/skills/academic-pipeline
+```sh
+python -m pip install -r requirements-dev.txt
+python scripts/setup_research.py install --project /path/to/project --target both
 ```
 
-Each skill must sit at `.claude/skills/<skill-name>/SKILL.md` for Claude Code to discover it. See [docs/SETUP.md](docs/SETUP.md) for the copy-based alternative (Option B) and other installation methods (global `~/.claude/skills/`, Cowork, claude.ai).
+`--target codex` 只安装 Codex，`--target claude` 只安装 Claude Code。`both` 在两个工具各创建一个同名入口：
 
-## Step 2: Launch
-
-```bash
-claude
+```text
+project/
+├── .agents/skills/academic-research-skills/SKILL.md
+└── .claude/skills/academic-research-skills/SKILL.md
 ```
 
-## Step 3: Start researching
+入口指向本地源码，保留源码目录的位置。无需符号链接权限。已有入口不会被覆盖；先检查并自行迁移旧安装，安装器不会删除用户已有 skill。新安装不会创建旧四个入口。该改版尚未发布到上游 marketplace，请使用这里的本地安装方式。
 
-Tell Claude what you want to do. It will automatically pick the right skill and mode.
+## 创建论文项目
 
-### Example: Guided research (Socratic mode)
+综述论文：
 
-```
-You: "I have a vague idea about AI's impact on higher education quality assurance,
-      but I'm not sure how to frame the research question. Can you guide me?"
-```
-
-Claude will enter Socratic mode — asking questions to help you clarify your thinking, not giving you answers directly. After 5-15 rounds of dialogue, you'll have a focused research question and methodology direction.
-
-### Example: Write a paper
-
-```
-You: "Help me write a paper about the impact of declining birth rates
-      on private universities in Taiwan"
+```sh
+python scripts/setup_research.py init --directory /path/to/project/my-review --paper-type review --review-kind systematic --title "论文题目"
 ```
 
-### Example: Review an existing paper
+`--review-kind` 可选 `narrative`、`systematic`、`scoping`。实验／方法类论文：
 
-```
-You: "Review this paper" (then paste or attach the paper)
-```
-
-### Example: Full pipeline (research → write → review → revise → publish)
-
-```
-You: "I want to produce a complete research paper about how agentic AI
-      is reshaping student learning outcome measurement"
+```sh
+python scripts/setup_research.py init --directory /path/to/project/my-paper --paper-type empirical --title "论文题目"
 ```
 
-This triggers the full 10-stage pipeline. Budget ~$4-6 in API costs and 2-4 hours of collaborative work.
+可添加 `--vault /path/to/vault` 记录 Obsidian 位置。参数含空格或中文时使用引号。初始化配置和起始文件不代表已经完成研究。
 
-## Which mode should I use?
+## 使用同一个入口
 
-| I want to... | Use this |
-|-------------|----------|
-| Explore a vague idea | `deep-research` socratic mode — just describe your interest |
-| Get a quick literature summary | `deep-research` quick mode |
-| Do a systematic review (PRISMA) | `deep-research` systematic-review mode |
-| Write a paper from scratch | `academic-paper` full mode |
-| Plan a paper chapter by chapter | `academic-paper` plan mode |
-| Get my paper reviewed | `academic-paper-reviewer` full mode |
-| Do everything end-to-end | `academic-pipeline` — say "I want a complete research paper" |
+- “使用 academic-research-skills，围绕我的问题检索和梳理文献。”
+- “使用 academic-research-skills，根据材料写系统综述的大纲。”
+- “使用 academic-research-skills，评审这份实验论文，先检查方法和结果。”
+- “使用 academic-research-skills，从 research-project.yaml 和 passport.yaml 继续整个论文流程。”
 
-## What's next?
+只要求一个阶段时执行该阶段；要求全流程时在内部衔接各阶段，无需切换 skill。原 `/ars-*` 文件是可选模式快捷方式，本地安装器不注册这些插件命令，直接使用自然语言即可。
 
-- [Full README](README.md) — all features, modes, installation options, and changelog
-- [中文版](README.zh-TW.md) — Traditional Chinese version
-- [Pipeline showcase](examples/showcase/) — real artifacts from a complete pipeline run
+Zotero 实时工具、离线导入、Obsidian 文献笔记以及跨工具恢复见 [材料与运行环境协议](shared/references/portable_research_workflow.md)。实时连接是否可用由当前环境决定；导入书目和笔记不等于完成原文核查。

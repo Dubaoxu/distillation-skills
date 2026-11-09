@@ -1,8 +1,11 @@
 # Mode Registry
 
-Single source of truth for all modes across the ARS suite. **25 modes** across 4 skills.
+One public skill: `academic-research-skills`. The former four skills are internal
+workflow families. Their detailed submodes below remain available through the
+unified entrypoint; they are not independently installed or invoked.
 
-When adding or modifying modes, update this file first — SKILL.md files and CLAUDE.md should reference this registry.
+Use root `SKILL.md` for research/write/review/pipeline/resume routing. The historical
+family names below identify internal protocols and retained submodes.
 
 Last updated: v3.9.2 (2026-05-18)
 

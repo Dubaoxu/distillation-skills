@@ -48,6 +48,17 @@ def _parse_changelog_latest(changelog_text: str) -> str | None:
 def check(root: Path) -> list[str]:
     errors: list[str] = []
 
+    if (root / "SKILL.md").is_file():
+        try:
+            fm = parse_frontmatter(root / "SKILL.md")
+        except FrontmatterError as exc:
+            return [str(exc)]
+        declared = str((fm or {}).get("metadata", {}).get("version", ""))
+        changelog = root / "CHANGELOG.md"
+        if not changelog.is_file() or declared != _parse_changelog_latest(changelog.read_text(encoding="utf-8")):
+            errors.append("unified skill version must match the latest CHANGELOG release")
+        return errors
+
     claude_md = root / ".claude" / "CLAUDE.md"
     if not claude_md.is_file():
         errors.append(f"{claude_md}: not found")
@@ -82,6 +93,8 @@ def check(root: Path) -> list[str]:
 
     for skill_name, table_version in sorted(table_versions.items()):
         skill_md = root / skill_name / "SKILL.md"
+        if not skill_md.is_file() and (root / skill_name / "WORKFLOW.md").is_file():
+            skill_md = root / skill_name / "WORKFLOW.md"
         if not skill_md.is_file():
             errors.append(
                 f"{claude_md}: table lists {skill_name!r} v{table_version} "

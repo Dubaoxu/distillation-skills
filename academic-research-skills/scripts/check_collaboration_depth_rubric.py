@@ -15,7 +15,7 @@ from _skill_lint import split_frontmatter
 
 RUBRIC_PATH = Path("shared/collaboration_depth_rubric.md")
 ORCHESTRATOR_PATH = Path("academic-pipeline/agents/pipeline_orchestrator_agent.md")
-PIPELINE_SKILL_PATH = Path("academic-pipeline/SKILL.md")
+PIPELINE_SKILL_PATH = Path("academic-pipeline/WORKFLOW.md")
 AGENTS_DIR = Path("academic-pipeline/agents")
 
 DOI_TOKEN = "10.1186/s41239-026-00585-x"
@@ -78,7 +78,7 @@ def _check_agent_files(root: Path) -> list[str]:
     if not agents_dir.is_dir():
         return [f"{AGENTS_DIR} does not exist"]
     errs: list[str] = []
-    rubric_path_str = str(RUBRIC_PATH)
+    rubric_path_str = RUBRIC_PATH.as_posix()
     for path in sorted(agents_dir.glob("*.md")):
         text = path.read_text(encoding="utf-8")
         fm, _ = split_frontmatter(text)
