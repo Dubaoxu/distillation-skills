@@ -2,6 +2,19 @@
 
 学术研究与思维框架技能仓库。本次更新重点是 **Academic Research Skills v4.0.0**：将调研、写作、评审、编排合并为一个 skill，结合 Zotero、Obsidian，并提供 Claude Code / Codex 项目级入口。
 
+## 新用户从这里开始
+
+**论文调研、写作、评审与修订，只安装 [academic-research-skills](academic-research-skills/README.md) 这一个 skill。**
+
+- 唯一推荐的学术入口：[academic-research-skills/SKILL.md](academic-research-skills/SKILL.md)。
+- 安装时运行该目录的 `scripts/setup_research.py`；不要把整个仓库复制进软件的技能目录，也不要逐个安装四个内部协议目录。
+- `paper-writing-agent` 是保留的旧版论文协调器，不是新版的必需依赖；新项目请使用统一入口。
+- `nuwa-skill` 与 `automation-control-framework` 是其他用途的可选内容，不随新版学术 skill 自动安装。
+- 根目录 `docs/` 与 `push-to-github.*` 是仓库资料和维护脚本，不是 skill 入口；新版安装说明以学术目录的 [快速开始](academic-research-skills/QUICKSTART.md) 为准。
+- 各目录的许可证与原作者署名继续适用，不能用根目录许可替代子目录许可。
+
+旧目录保留供查阅和按需使用。GitHub 显示的文件时间是该路径最近一次修改时间，未修改的目录保留原时间，不影响新版安装。
+
 ## 仓库内容
 
 | 内容 | 用途 | 许可说明 |

@@ -1,3 +1,5 @@
+> **目录用途与安装提示**：本目录是可选的自动化控制领域知识框架，不是新版学术工作流的必需依赖。通用论文任务请安装 [统一学术 skill](../academic-research-skills/README.md)；只有需要本领域框架时才单独使用本目录。
+
 # Automation & Control · Knowledge Distillation Framework
 
 [中文版](README_ZH.md)

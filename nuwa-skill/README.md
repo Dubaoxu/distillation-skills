@@ -1,3 +1,5 @@
+> **目录用途与安装提示**：本目录是可选的人物思维蒸馏 skill，与论文工作流用途不同。仅需调研、写作和评审时，请安装 [统一学术 skill](../academic-research-skills/README.md)，无需安装本目录。
+
 <div align="center">
 
 # 女娲.skill

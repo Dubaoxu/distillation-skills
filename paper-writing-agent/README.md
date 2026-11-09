@@ -1,3 +1,5 @@
+> **目录用途与安装提示**：旧版论文协调器保留供参考。新项目请使用 [统一学术 skill](../academic-research-skills/README.md)，本目录不是新版的必需依赖，请勿与新版同时作为论文主入口安装。以下为原版说明。
+
 # Paper Writing Agent
 
 [中文版](README.zh-CN.md)

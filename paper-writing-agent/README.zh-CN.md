@@ -1,3 +1,5 @@
+> **目录用途与安装提示**：本目录为保留的旧版论文协调器。新项目只需安装 [统一学术 skill](../academic-research-skills/README.md)；无需额外安装本目录。以下为原版说明。
+
 # Paper Writing Agent（论文写作代理）
 
 [English](README.md)
