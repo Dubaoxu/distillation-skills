@@ -1,3 +1,5 @@
+> **许可说明**：本仓库包含多种许可，学术 skill 依 CC BY-NC 4.0 发布，非全仓库 MIT；授权未明确的两个旧目录当前仅保留说明页。来源、改动和未核实事项见 [许可范围清单](THIRD_PARTY_NOTICES.md)。
+
 # Distillation Skills
 
 学术研究与思维框架技能仓库。本次更新重点是 **Academic Research Skills v4.0.0**：将调研、写作、评审、编排合并为一个 skill，结合 Zotero、Obsidian，并提供 Claude Code / Codex 项目级入口。
@@ -13,7 +15,7 @@
 - 根目录 `docs/` 与 `push-to-github.*` 是仓库资料和维护脚本，不是 skill 入口；新版安装说明以学术目录的 [快速开始](academic-research-skills/QUICKSTART.md) 为准。
 - 各目录的许可证与原作者署名继续适用，不能用根目录许可替代子目录许可。
 
-旧目录保留供查阅和按需使用。GitHub 显示的文件时间是该路径最近一次修改时间，未修改的目录保留原时间，不影响新版安装。
+部分旧目录因授权范围待确认已移出当前版本，只保留说明页。GitHub 显示的文件时间是该路径最近一次修改时间，未修改的目录保留原时间，不影响新版安装。
 
 ## 仓库内容
 
@@ -21,8 +23,8 @@
 |---|---|---|
 | [Academic Research Skills](academic-research-skills/README.md) | 单一入口的学术研究与论文工作流 | [CC BY-NC 4.0](academic-research-skills/LICENSE) |
 | [女娲 Skill](nuwa-skill/) | 人物思维方式蒸馏 | 参见目录内许可 |
-| [Paper Writing Agent](paper-writing-agent/) | 原有论文写作协调材料 | 参见文件头部 |
-| [自动化控制框架](automation-control-framework/) | 自动化与控制领域知识框架 | 参见文件头部 |
+| [Paper Writing Agent](paper-writing-agent/) | 原有论文写作协调材料 | 当前仅保留授权待确认说明页 |
+| [自动化控制框架](automation-control-framework/) | 自动化与控制领域知识框架 | 当前仅保留授权待确认说明页 |
 
 本次融合对象是 Academic Research Skills 原有的四个核心 skill；其他目录保留其原有用途。
 

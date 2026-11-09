@@ -1,3 +1,25 @@
+LICENSE SCOPE / 许可适用范围
+
+This is a mixed-license collection, not an all-MIT repository.
+The MIT grant below applies only to original collection-level contributions
+whose authors have authority to grant it. It does not relicense third-party
+works, adapted academic workflows, quoted papers, images, or personal materials.
+
+- academic-research-skills/: CC BY-NC 4.0; original attribution retained.
+- nuwa-skill/: its own MIT license and original copyright notice apply;
+  independently owned quoted text, images and other third-party assets are
+  not automatically licensed by that MIT notice.
+- docs/: no blanket MIT grant is asserted for research notes, manuscript
+  samples, figures or quoted materials; provenance must be checked separately.
+- paper-writing-agent/ and automation-control-framework/: original payloads
+  withheld from the current tree pending permission clarification.
+
+See THIRD_PARTY_NOTICES.md for provenance, modifications and remaining limits.
+This scope notice clarifies coverage; it does not revoke rights already validly
+received or grant rights the publisher does not hold.
+
+---
+
 MIT License
 
 Copyright (c) 2026 Distillation Skills Contributors
